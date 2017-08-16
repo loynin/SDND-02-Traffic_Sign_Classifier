@@ -83,31 +83,38 @@ If a well known architecture was chosen:
 ### Test a Model on New Images
 #### 1. Real Traffic Sign Selection:
 Here are five German traffic signs that I found on the web:
-         
+
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/fiveimagesign.png)
+
 The fourth image is difficult to classify because it doesn’t have in any class in the training dataset. Therefore, the training doesn’t know what class is the sign would be in.
 
 #### 2. Accuracy of Model Prediction to real world traffic signs:
 
 The model can predict four of the five images correctly. Therefore, the accuracy of the prediction is 80% compare to the training set of 93.4%. The fourth image is outside of the classes in the training set, therefore, it make sense that the model could not predict it while we doesn’t train it to recognize this image. 
+
 Here are the results of the prediction:
-Image	Prediction
-Go straight or left	Go straight or left
-Priority road	Priority road
-Yield	Yield
-Speed limit 40 km/h	End of no passing by vehicle over 3.5 metric tons
-Speed limit 20 km/h	Speed limit 30 km/h
+
+Image |	Prediction
+---|---
+Go straight or left |	Go straight or left
+Priority road	| Priority road
+Yield	| Yield
+Speed limit 40 km/h	| End of no passing by vehicle over 3.5 metric tons
+Speed limit 20 km/h	| Speed limit 30 km/h
 
 #### 3. For these real traffic sign images, the model predicts 60% correct. Only fourth and fifth image that are images that the model did not predicted accurately; Picture below shows how the result of the model’s prediction to real traffic signs. 
 
 ![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph4.png)
 
 For the first image, the model is relatively sure that this is a Go straight or left (probability of 1), and the image do contain a Go straight or left sign. The top five soft max probabilities were
-Probability	Prediction
-1	Go straight or left
-1	Priority road
-1	Yield
-1 – Wrong prediction	End of no passing by vehicles over 3.5 metric tons
-1 – Wrong prediction	Speed limit (30km/h)
+
+Probability	| Prediction
+---|---
+1 |	Go straight or left
+1	| Priority road
+1	| Yield
+1 – Wrong prediction	| End of no passing by vehicles over 3.5 metric tons
+1 – Wrong prediction	| Speed limit (30km/h)
 
 Summary: 
 In the field of self-driving car, traffic sign classification would be the first step to make sure that the car does follow the law. In this project, the prediction of traffic sign accuracy is about 93% but in the real world this result is not applicable to implement while the error is two large to take risk. This mean that there are sill many more traffic sign that the self-driving car could not recognize so the car could not make the decision in responding to the traffic signs and the situation. There are still many more to improve and to learn in this area in order to make the model work to get more accuracy to which we can implement in the real world situation. These improvements could be providing more training data, remodeling the model, augmenting the images and tweaking some more parameter what could improve accuracy of the prediction.
