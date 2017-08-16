@@ -32,7 +32,7 @@ Firstly, I used original dataset for training, validating, and testing. The resu
 
 Here is an example of a traffic sign images that have additionally created for classes that have less than 500 images.
 
-![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph1.png)
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/augment_image.jpg)
 
 ### This is the new dataset
   
@@ -40,7 +40,7 @@ The new size of training set is 39239
 
 Below first line of images are the converted grayscale images and the bottom line is the normalized image:
 
-![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph1.png)
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph2.png)
  
 
 ####2. The model based on LeNet model with some tweak. 
@@ -198,7 +198,7 @@ Speed limit 20 km/h	Speed limit 30 km/h
 
 #### 3. For these real traffic sign images, the model predicts 60% correct. Only fourth and fifth image that are images that the model did not predicted accurately; Picture below shows how the result of the model’s prediction to real traffic signs. 
 
-![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph1.png)
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph3.png)
 
 For the first image, the model is relatively sure that this is a Go straight or left (probability of 1), and the image do contain a Go straight or left sign. The top five soft max probabilities were
 Probability	Prediction
