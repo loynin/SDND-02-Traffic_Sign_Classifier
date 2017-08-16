@@ -28,6 +28,8 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 
 ### Design and Test a Model Architecture
 
+#### 1. Model Selection:
+
 Firstly, I used original dataset for training, validating, and testing. The result is not satisfied because the percentage of accuracy is around 80 percent. Then I try to create more fake data by creating more images per classes that has images less than 500. Using augment_img() function to change image contrast, size, color, and transform image from the original attribute to different attribute. The result still could not satisfy the requirement because the accuracy is below 90 percent. Finally, I decide to convert the images to grayscale and normalize the dataset; and I see the improvement on the result and I could get the accuracy above 93 percent.
 
 Here is an example of a traffic sign images that have additionally created for classes that have less than 500 images.
@@ -40,142 +42,32 @@ The new size of training set is 39239
 
 Below first line of images are the converted grayscale images and the bottom line is the normalized image:
 
-![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph2.png)
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph3.png)
  
 
-####2. The model based on LeNet model with some tweak. 
+#### 2. The model based on LeNet model with some tweak. 
 My final model consisted of the following layers:
-Layer	Description
-Input	32x32x1 Grayscale image
-Convolution 5x5	1x1 stride, VALID padding, outputs 28x28x6
-RELU	
-Max pooling	2x2 stride, VALID padding, outputs 5x5x16
-Convolution 5x5	1x1 stride, VALID padding, outputs 1x1x400
-ReLu	
-Flatten layers	Concatenate flattened layers 
-Dropout layer	
-Fully connected layer	800 in, 42 out
 
-####3. This model is based on LeNet model. As it always, using the combination of the right parameters would be critical for model to perform well and improve accuracy. In this training, I have used the following parameters:
-•	Batch size = 100 
-•	Epochs = 25 
-•	mu = 0 
-•	sigma = 0.1
-•	rate = 0.001
-•	This model is using AdamOptimizer
+| Layer | Description |
+| Input | 32x32x1 Grayscale image |
+| Convolution 5x5 |	1x1 stride, VALID padding, outputs 28x28x6 |
+| RELU |	|
+| Max pooling |	2x2 stride, VALID padding, outputs 5x5x16 |
+| Convolution 5x5 |	1x1 stride, VALID padding, outputs 1x1x400 |
+| ReLu| |	
+| Flatten layers |	Concatenate flattened layers |
+| Dropout layer |	|
+| Fully connected layer |	800 in, 42 out |
 
-####4. To get accuracy to be at lease 0.93, I have used LeNet model with some customizations. While using original LeNet, the accuracy is below 0.9. With some customization, the accuracy is above 0.93.   
-Comparing Original LeNet with new Model
-LeNet	Customized LeNet
-# Arguments used for tf.truncated_normal, randomly defines variables for the weights and biases for each layer
-    mu = 0
-    sigma = 0.1
-	# Hyperparameters
-    mu = 0
-    sigma = 0.1
+#### 3. This model is based on LeNet model. As it always, using the combination of the right parameters would be critical for model to perform well and improve accuracy. In this training, I have used the following parameters:
+- 	Batch size = 100 
+- 	Epochs = 25 
+- 	mu = 0 
+- 	sigma = 0.1
+- 	rate = 0.001
+- 	This model is using AdamOptimizer
 
-    # SOLUTION: Layer 1: Convolutional. Input = 32x32x1. Output = 28x28x6.
-    conv1_W = tf.Variable(tf.truncated_normal(shape=(5, 5, 1, 6), mean = mu, stddev = sigma))
-    conv1_b = tf.Variable(tf.zeros(6))
-    conv1   = tf.nn.conv2d(x, conv1_W, strides=[1, 1, 1, 1], padding='VALID') + conv1_b
-	    # TODO: Layer 1: Convolutional. Input = 32x32x1. Output = 28x28x6.
-    W1 = tf.Variable(tf.truncated_normal(shape=(5, 5, 1, 6), mean = mu, stddev = sigma), name="W1")
-    x = tf.nn.conv2d(x, W1, strides=[1, 1, 1, 1], padding='VALID')
-    b1 = tf.Variable(tf.zeros(6), name="b1")
-    x = tf.nn.bias_add(x, b1)
-    print("layer 1 shape:",x.get_shape())
-
-# SOLUTION: Activation.
-    conv1 = tf.nn.relu(conv1)
-	    # TODO: Activation.
-    x = tf.nn.relu(x)
-
-
-    # SOLUTION: Pooling. Input = 28x28x6. Output = 14x14x6.
-    conv1 = tf.nn.max_pool(conv1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
-	    # TODO: Pooling. Input = 28x28x6. Output = 14x14x6.
-    x = tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
-    layer1 = x
-
-
-    # SOLUTION: Layer 2: Convolutional. Output = 10x10x16.
-    conv2_W = tf.Variable(tf.truncated_normal(shape=(5, 5, 6, 16), mean = mu, stddev = sigma))
-    conv2_b = tf.Variable(tf.zeros(16))
-    conv2   = tf.nn.conv2d(conv1, conv2_W, strides=[1, 1, 1, 1], padding='VALID') + conv2_b
-	    # TODO: Layer 2: Convolutional. Output = 10x10x16.
-    W2 = tf.Variable(tf.truncated_normal(shape=(5, 5, 6, 16), mean = mu, stddev = sigma), name="W2")
-    x = tf.nn.conv2d(x, W2, strides=[1, 1, 1, 1], padding='VALID')
-    b2 = tf.Variable(tf.zeros(16), name="b2")
-    x = tf.nn.bias_add(x, b2)
-
-    # SOLUTION: Activation.
-    conv2 = tf.nn.relu(conv2)
-	    # TODO: Activation.
-    x = tf.nn.relu(x)
-
-
-    # SOLUTION: Pooling. Input = 10x10x16. Output = 5x5x16.
-    conv2 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
-	    # TODO: Pooling. Input = 10x10x16. Output = 5x5x16.
-    x = tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
-    layer2 = x
-
-
-    # SOLUTION: Flatten. Input = 5x5x16. Output = 400.
-    fc0   = flatten(conv2)
-	
-# SOLUTION: Layer 3: Fully Connected. Input = 400. Output = 120.
-    fc1_W = tf.Variable(tf.truncated_normal(shape=(400, 120), mean = mu, stddev = sigma))
-    fc1_b = tf.Variable(tf.zeros(120))
-    fc1   = tf.matmul(fc0, fc1_W) + fc1_b
-	    # TODO: Layer 3: Convolutional. Output = 1x1x400.
-    W3 = tf.Variable(tf.truncated_normal(shape=(5, 5, 16, 400), mean = mu, stddev = sigma), name="W3")
-    x = tf.nn.conv2d(x, W3, strides=[1, 1, 1, 1], padding='VALID')
-    b3 = tf.Variable(tf.zeros(400), name="b3")
-    x = tf.nn.bias_add(x, b3)
-
-    # SOLUTION: Activation.
-    fc1    = tf.nn.relu(fc1)
-	    # TODO: Activation.
-    x = tf.nn.relu(x)
-    layer3 = x
-
-    # SOLUTION: Layer 4: Fully Connected. Input = 120. Output = 84.
-    fc2_W  = tf.Variable(tf.truncated_normal(shape=(120, 84), mean = mu, stddev = sigma))
-    fc2_b  = tf.Variable(tf.zeros(84))
-    fc2    = tf.matmul(fc1, fc2_W) + fc2_b
-	
-    # TODO: Flatten. Input = 5x5x16. Output = 400.
-    layer2flat = flatten(layer2)
-    print("layer2flat shape:",layer2flat.get_shape())
-
-	    # Flatten x. Input = 1x1x400. Output = 400.
-    xflat = flatten(x)
-    print("xflat shape:",xflat.get_shape())
-
-        # SOLUTION: Activation.
-    fc2    = tf.nn.relu(fc2)
-	
-
-    # SOLUTION: Layer 5: Fully Connected. Input = 84. Output = 10.
-    fc3_W  = tf.Variable(tf.truncated_normal(shape=(84, 10), mean = mu, stddev = sigma))
-    fc3_b  = tf.Variable(tf.zeros(10))
-    logits = tf.matmul(fc2, fc3_W) + fc3_b
-    
-    return logits	    # Concat layer2flat and x. Input = 400 + 400. Output = 800
-    x = tf.concat([xflat, layer2flat], 1)
-    print("x shape:",x.get_shape())
-
-	    # Dropout
-    x = tf.nn.dropout(x, keep_prob)
-
-	
-    # TODO: Layer 4: Fully Connected. Input = 800. Output = 43.
-    W4 = tf.Variable(tf.truncated_normal(shape=(800, 43), mean = mu, stddev = sigma), name="W4")
-    b4 = tf.Variable(tf.zeros(43), name="b4")    
-    logits = tf.add(tf.matmul(x, W4), b4)
-    
-    return logits
+#### 4. To get accuracy to be at lease 0.93, I have used LeNet model with some customizations. While using original LeNet, the accuracy is below 0.9. With some customization, the accuracy is above 0.93.
 
 My final model results were:
 •	validation set accuracy of 0.988
@@ -198,7 +90,7 @@ Speed limit 20 km/h	Speed limit 30 km/h
 
 #### 3. For these real traffic sign images, the model predicts 60% correct. Only fourth and fifth image that are images that the model did not predicted accurately; Picture below shows how the result of the model’s prediction to real traffic signs. 
 
-![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph3.png)
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph4.png)
 
 For the first image, the model is relatively sure that this is a Go straight or left (probability of 1), and the image do contain a Go straight or left sign. The top five soft max probabilities were
 Probability	Prediction
