@@ -116,5 +116,8 @@ Probability	| Prediction
 1 – Wrong prediction	| End of no passing by vehicles over 3.5 metric tons
 1 – Wrong prediction	| Speed limit (30km/h)
 
-Summary: 
+###Summary:
+
 In the field of self-driving car, traffic sign classification would be the first step to make sure that the car does follow the law. In this project, the prediction of traffic sign accuracy is about 93% but in the real world this result is not applicable to implement while the error is two large to take risk. This mean that there are sill many more traffic sign that the self-driving car could not recognize so the car could not make the decision in responding to the traffic signs and the situation. There are still many more to improve and to learn in this area in order to make the model work to get more accuracy to which we can implement in the real world situation. These improvements could be providing more training data, remodeling the model, augmenting the images and tweaking some more parameter what could improve accuracy of the prediction.
+
+
