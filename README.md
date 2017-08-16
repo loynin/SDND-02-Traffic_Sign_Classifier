@@ -49,6 +49,7 @@ Below first line of images are the converted grayscale images and the bottom lin
 My final model consisted of the following layers:
 
 | Layer | Description |
+|---|---|
 | Input | 32x32x1 Grayscale image |
 | Convolution 5x5 |	1x1 stride, VALID padding, outputs 28x28x6 |
 | RELU |	|
@@ -70,16 +71,24 @@ My final model consisted of the following layers:
 #### 4. To get accuracy to be at lease 0.93, I have used LeNet model with some customizations. While using original LeNet, the accuracy is below 0.9. With some customization, the accuracy is above 0.93.
 
 My final model results were:
-•	validation set accuracy of 0.988
-•	test set accuracy of 0.935
+
+- validation set accuracy of 0.988
+- test set accuracy of 0.935
+
 If a well known architecture was chosen:
-•	I used LeNet for the architecture of this training. On the other hand, I could not get the accuracy above 0.9 while using the original LeNet. I have to customize some of the function in order to improve the model accuracy.
-•	Follow by the instruction from the lesson in the classroom; I think that LeNet is a good model that can be used for the traffic sign classification.
-###Test a Model on New Images
-####1. Here are five German traffic signs that I found on the web:
+
+- I used LeNet for the architecture of this training. On the other hand, I could not get the accuracy above 0.9 while using the original LeNet. I have to customize some of the function in order to improve the model accuracy.
+- Follow by the instruction from the lesson in the classroom; I think that LeNet is a good model that can be used for the traffic sign classification.
+
+### Test a Model on New Images
+#### 1. Real Traffic Sign Selection:
+Here are five German traffic signs that I found on the web:
          
 The fourth image is difficult to classify because it doesn’t have in any class in the training dataset. Therefore, the training doesn’t know what class is the sign would be in.
-####2. The model can predict four of the five images correctly. Therefore, the accuracy of the prediction is 80% compare to the training set of 93.4%. The fourth image is outside of the classes in the training set, therefore, it make sense that the model could not predict it while we doesn’t train it to recognize this image. 
+
+#### 2. Accuracy of Model Prediction to real world traffic signs:
+
+The model can predict four of the five images correctly. Therefore, the accuracy of the prediction is 80% compare to the training set of 93.4%. The fourth image is outside of the classes in the training set, therefore, it make sense that the model could not predict it while we doesn’t train it to recognize this image. 
 Here are the results of the prediction:
 Image	Prediction
 Go straight or left	Go straight or left
