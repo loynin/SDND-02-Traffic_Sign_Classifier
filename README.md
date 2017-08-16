@@ -23,12 +23,12 @@ In this writeup, I decided to use pdf file. I also used this writeup as a readme
 - The number of unique classes/labels in the data set is 43
 #### 2. Include an exploratory visualization of the dataset.
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data is distribute for each class off traffic signs: 
- 
-### Design and Test a Model Architecture
-#### 1. Firstly, I used original dataset for training, validating, and testing. The result is not satisfied because the percentage of accuracy is around 80 percent. Then I try to create more fake data by creating more images per classes that has images less than 500. Using augment_img() function to change image contrast, size, color, and transform image from the original attribute to different attribute. The result still could not satisfy the requirement because the accuracy is below 90 percent. Finally, I decide to convert the images to grayscale and normalize the dataset; and I see the improvement on the result and I could get the accuracy above 93 percent.
-Here is an example of a traffic sign images that have additionally created for classes that have less than 500 images.
- 
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph1.png)
 
+### Design and Test a Model Architecture
+
+Firstly, I used original dataset for training, validating, and testing. The result is not satisfied because the percentage of accuracy is around 80 percent. Then I try to create more fake data by creating more images per classes that has images less than 500. Using augment_img() function to change image contrast, size, color, and transform image from the original attribute to different attribute. The result still could not satisfy the requirement because the accuracy is below 90 percent. Finally, I decide to convert the images to grayscale and normalize the dataset; and I see the improvement on the result and I could get the accuracy above 93 percent.
+Here is an example of a traffic sign images that have additionally created for classes that have less than 500 images.
 
 This is the new dataset
   
