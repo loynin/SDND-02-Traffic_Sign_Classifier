@@ -29,13 +29,18 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 ### Design and Test a Model Architecture
 
 Firstly, I used original dataset for training, validating, and testing. The result is not satisfied because the percentage of accuracy is around 80 percent. Then I try to create more fake data by creating more images per classes that has images less than 500. Using augment_img() function to change image contrast, size, color, and transform image from the original attribute to different attribute. The result still could not satisfy the requirement because the accuracy is below 90 percent. Finally, I decide to convert the images to grayscale and normalize the dataset; and I see the improvement on the result and I could get the accuracy above 93 percent.
+
 Here is an example of a traffic sign images that have additionally created for classes that have less than 500 images.
+
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph1.png)
 
 ### This is the new dataset
   
 The new size of training set is 39239
 
 Below first line of images are the converted grayscale images and the bottom line is the normalized image:
+
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph1.png)
  
 
 ####2. The model based on LeNet model with some tweak. 
@@ -192,7 +197,9 @@ Speed limit 40 km/h	End of no passing by vehicle over 3.5 metric tons
 Speed limit 20 km/h	Speed limit 30 km/h
 
 #### 3. For these real traffic sign images, the model predicts 60% correct. Only fourth and fifth image that are images that the model did not predicted accurately; Picture below shows how the result of the model’s prediction to real traffic signs. 
-  
+
+![Distribution of Images](https://github.com/loynin/Traffic_Sign_Classifier/blob/master/graph1.png)
+
 For the first image, the model is relatively sure that this is a Go straight or left (probability of 1), and the image do contain a Go straight or left sign. The top five soft max probabilities were
 Probability	Prediction
 1	Go straight or left
